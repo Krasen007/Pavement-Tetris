@@ -14,6 +14,7 @@ import 'index.css';
 import TitleScreen from 'js/stage/title.js';
 import PlayScreen from 'js/stage/play.js';
 import PlayerEntity from 'js/renderables/player.js';
+import EnemyEntity from './js/renderables/enemy.js';
 
 import DataManifest from 'manifest.js';
 
@@ -21,7 +22,7 @@ import DataManifest from 'manifest.js';
 device.onReady(() => {
 
     // initialize the display canvas once the device/browser is ready
-    if (!video.init(1218, 562, {parent : "screen", scale : "auto"})) {
+    if (!video.init(1218, 562, { parent: "screen", scale: "auto", scaleMethod: "flex-width" })) {
         alert("Your browser does not support HTML5 canvas.");
         return;
     }
@@ -42,13 +43,13 @@ device.onReady(() => {
     loader.crossOrigin = "anonymous";
 
     // set and load all resources.
-    loader.preload(DataManifest, function() {
+    loader.preload(DataManifest, function () {
         // set the user defined game stages
         state.set(state.MENU, new TitleScreen());
         state.set(state.PLAY, new PlayScreen());
 
         // add our player entity in the entity pool
-        pool.register("mainPlayer", PlayerEntity);
+        pool.register("mainPlayer", PlayerEntity, EnemyEntity);
 
         // Start the game.
         state.change(state.PLAY);
