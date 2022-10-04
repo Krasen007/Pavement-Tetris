@@ -2,12 +2,8 @@
 
 Made by Krasen Ivanov 2022
 
-
-
 ## melonJS ES6 Webpack Boilerplate
-![melonJS Logo](https://github.com/melonjs/melonJS/raw/master/media/Banner/Banner%20-%20Billboard%20-%20Original%20Logo%20-%20horizontal.png)
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/melonjs/es6-boilerplate/blob/master/LICENSE)
+https://github.com/melonjs/melonJS
 
 ## Prerequisites
 
