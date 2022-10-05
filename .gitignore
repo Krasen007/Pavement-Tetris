@@ -1,6 +1,6 @@
 #node modules are synced while this is developed
 #node_modules/
-#public/
+public/
 .DS_Store
 package-lock.json
 node_modules
