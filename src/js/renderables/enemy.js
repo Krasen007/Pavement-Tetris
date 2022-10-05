@@ -6,12 +6,12 @@ class EnemyEntity extends me.Sprite {
     /**
      * constructor
      */
-    constructor(x,y) {
+    constructor(x, y) {
         //let a = new Entity();
         //a.game
         //let image = me.loader.getImage("player");
         // call the parent constructor
-        super(x, y, { 
+        super(x, y, {
             image: "ships", framewidth: 32, frameheight: 32
         });
 
@@ -20,13 +20,16 @@ class EnemyEntity extends me.Sprite {
 
         this.body.ignoreGravity = true;
 
+        //this.body.vel.set(0, 0);
+        this.body.collisionType = me.collision.types.ENEMY_OBJECT;
+
         this.chooseImage();
     }
 
     chooseImage() {
-        let frame = me.Math.random(0,4); // Count the objects in the picture
+        let frame = me.Math.random(0, 4); // Count the objects in the picture
 
-        this.addAnimation("idle", [frame],1);
+        this.addAnimation("idle", [frame], 1);
         this.setCurrentAnimation("idle");
     }
 

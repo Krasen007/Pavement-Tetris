@@ -2,6 +2,7 @@ import { Stage, game, ColorLayer, BitmapText } from 'melonjs/dist/melonjs.module
 import PlayerEntity from '../renderables/player.js';
 import * as me from 'melonjs/dist/melonjs.module.js';
 import EnemyEntity from '../renderables/enemy.js';
+import EnemyManager from '../managers/enemy-manager.js';
 
 class PlayScreen extends Stage {
     /**
@@ -22,18 +23,32 @@ class PlayScreen extends Stage {
         me.game.world.addChild(new me.ColorLayer("background", "#022000"), 0);
 
         this.player = new PlayerEntity();
-        this.enemy = new EnemyEntity(150,50);
-        this.enemy2 = new EnemyEntity(250,50);
-
-
         me.game.world.addChild(this.player, 1);
-        me.game.world.addChild(this.enemy, 2);
-        me.game.world.addChild(this.enemy2, 2);
+
+        this.enemyManager = new EnemyManager();
+        this.enemyManager.createEnemies();
+        me.game.world.addChild(this.enemyManager, 2);
+
+        //this.enemy = new EnemyEntity(150, 50);
+        //this.enemy2 = new EnemyEntity(250, 50);
+
+
+        //me.game.world.addChild(this.enemy, 2);
+        //me.game.world.addChild(this.enemy2, 2);
 
         me.input.bindKey(me.input.KEY.LEFT, "left");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.A, "left");
         me.input.bindKey(me.input.KEY.D, "right");
+        me.input.bindKey(me.input.KEY.SPACE, "shoot", true);
+
+
+    }
+
+    checkIfLoss(y) {
+        if (y >= this.player.pos.y) {
+            this.reset();
+        }
     }
 
     onDestroyEvent() {
@@ -41,6 +56,8 @@ class PlayScreen extends Stage {
         me.input.unbindKey(me.input.KEY.RIGHT);
         me.input.unbindKey(me.input.KEY.A);
         me.input.unbindKey(me.input.KEY.D);
+        me.input.unbindKey(me.input.KEY.SPACE);
+
     }
 };
 
